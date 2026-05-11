@@ -876,7 +876,7 @@ def count_logical_errors_with_errorbar(model, device, dist, cfg):
     return result
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def run_inference_and_decode_pre_decoder_memory(model, device, dist, cfg) -> dict:
     """
     Runs inference with the trained model, forms residual syndromes consistent with the DEM,
@@ -1574,7 +1574,7 @@ def run_inference_and_decode_pre_decoder_memory(model, device, dist, cfg) -> dic
     return logical_errors, total_samples, num_pymatch_errors, baseline_us_per_round, predecoder_us_per_round
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def compute_syndrome_density_reduction(model, device, dist, cfg) -> dict:
     """
     Applies a trained model to compute the reduction in syndrome density.
